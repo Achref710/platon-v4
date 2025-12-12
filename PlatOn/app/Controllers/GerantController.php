@@ -1,0 +1,20 @@
+<?php
+class GerantController extends Controller {
+    public function dashboard() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'gerant') {
+            $this->redirect('auth/login');
+        }
+        
+        $this->view('gerant/dashboard', [
+            'title' => 'Dashboard Gérant - PlatOn'
+        ]);
+    }
+    
+    public function update() {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'gerant') {
+            $this->redirect('auth/login');
+        }
+        require_once BASE_PATH . '/app/views/process/update.php';
+    }
+}
+?>
